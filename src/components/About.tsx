@@ -1,13 +1,13 @@
 export default function About() {
   return (
-    <section id="about" className="px-6 py-24">
-      <div className="mx-auto max-w-6xl">
+    <section id="about" className="bg-paper-blue paper-texture px-6 py-24 relative">
+      <div className="mx-auto max-w-6xl relative z-10">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
-            <h2 className="mb-6 text-3xl font-bold tracking-tight sm:text-4xl">
-              About <span className="gradient-text">Spaceman Tech</span>
+            <h2 className="mb-6 text-4xl font-black tracking-tight text-text-dark sm:text-5xl">
+              About <span className="accent-underline">us</span>
             </h2>
-            <div className="space-y-4 text-muted leading-relaxed">
+            <div className="space-y-4 text-text-dark/70 leading-relaxed">
               <p>
                 Spaceman Tech LLC is a Delaware-registered software consultancy
                 with operations in both the United States and Honduras through
@@ -15,63 +15,47 @@ export default function About() {
               </p>
               <p>
                 Founded by a hands-on software engineer with deep experience
-                across the full stack — from frontend frameworks and mobile apps
-                to backend systems, cloud infrastructure, and AI — we bring a
-                builder&apos;s mentality to every engagement.
+                across the full stack — frontend, mobile, backend, cloud, and AI
+                — we bring a builder&apos;s mentality to every engagement.
               </p>
               <p>
-                We&apos;re not a body shop. We&apos;re a team that ships real products.
-                Our portfolio speaks for itself: multiple production apps built
-                from the ground up, each solving real problems for real users.
-              </p>
-              <p>
-                Whether you need a technical co-founder, a development partner,
-                or a full engineering team — we adapt to what your project needs.
+                We&apos;re not a body shop. We ship real products. Our portfolio
+                is proof. Whether you need a technical co-founder, a dev
+                partner, or a full engineering team — we adapt.
               </p>
             </div>
           </div>
 
           <div className="space-y-4">
-            <div className="rounded-xl border border-surface-light bg-surface/50 p-6 backdrop-blur-sm">
-              <div className="mb-2 text-sm font-semibold text-accent">
+            <div className="paper-card paper-shadow rounded-2xl bg-paper-white p-6 -rotate-1">
+              <div className="mb-1 text-xs font-bold text-accent uppercase tracking-wider">
                 USA Entity
               </div>
-              <div className="text-lg font-semibold">Spaceman Tech LLC</div>
-              <div className="text-sm text-muted">
-                Registered in Delaware, USA
-              </div>
+              <div className="text-lg font-bold text-text-dark">Spaceman Tech LLC</div>
+              <div className="text-sm text-text-dark/50">Delaware, USA</div>
             </div>
-            <div className="rounded-xl border border-surface-light bg-surface/50 p-6 backdrop-blur-sm">
-              <div className="mb-2 text-sm font-semibold text-accent">
+            <div className="paper-card paper-shadow rounded-2xl bg-paper-cream p-6 rotate-1">
+              <div className="mb-1 text-xs font-bold text-teal uppercase tracking-wider">
                 Honduras Entity
               </div>
-              <div className="text-lg font-semibold">
+              <div className="text-lg font-bold text-text-dark">
                 Ingenier&iacute;a y Desarrollo &Aacute;gil S de RL
               </div>
-              <div className="text-sm text-muted">
-                Registered in Honduras
-              </div>
+              <div className="text-sm text-text-dark/50">Honduras</div>
             </div>
-            <div className="rounded-xl border border-surface-light bg-surface/50 p-6 backdrop-blur-sm">
-              <div className="mb-2 text-sm font-semibold text-primary-light">
+            <div className="paper-card paper-shadow rounded-2xl bg-paper-sand p-6 -rotate-0.5">
+              <div className="mb-1 text-xs font-bold text-text-dark/40 uppercase tracking-wider">
                 Tech Stack
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 mt-2">
                 {[
-                  "React",
-                  "Next.js",
-                  "Node.js",
-                  "TypeScript",
-                  "Python",
-                  "React Native",
-                  "PostgreSQL",
-                  "AWS",
-                  "AI/LLMs",
-                  "Docker",
+                  "React", "Next.js", "Node.js", "TypeScript",
+                  "Python", "React Native", "PostgreSQL",
+                  "AWS", "AI/LLMs", "Docker",
                 ].map((tech) => (
                   <span
                     key={tech}
-                    className="rounded-full border border-surface-light bg-background px-3 py-1 text-xs text-muted"
+                    className="rounded-full bg-dark px-3 py-1 text-xs font-bold text-paper-white"
                   >
                     {tech}
                   </span>

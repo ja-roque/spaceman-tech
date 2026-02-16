@@ -2,82 +2,83 @@ const projects = [
   {
     name: "Dayby.Dev",
     url: "https://dayby.dev",
-    description:
-      "A developer productivity tool designed to help engineers track their daily work and stay focused on what matters.",
+    description: "Developer productivity tool — track daily work, stay focused on what matters.",
     tags: ["Web App", "Productivity", "SaaS"],
+    color: "bg-paper-blue",
+    rotation: "-rotate-1",
   },
   {
     name: "DonArmando.io",
     url: "https://donarmando.io",
-    description:
-      "A custom-built platform solving real-world business needs with a polished user experience and robust backend.",
+    description: "Custom platform solving real-world business needs with a polished experience.",
     tags: ["Platform", "Full-Stack", "Custom"],
+    color: "bg-paper-sand",
+    rotation: "rotate-1",
   },
   {
     name: "TripAlbum.app",
     url: "https://tripalbum.app",
-    description:
-      "A beautiful app for travelers to organize and share their trip photos and memories in stunning albums.",
+    description: "Organize and share trip photos and memories in stunning albums.",
     tags: ["Mobile", "Travel", "Photo"],
+    color: "bg-paper-coral",
+    rotation: "rotate-0.5",
   },
   {
     name: "SmartPrice.app",
     url: "https://smartprice.app",
-    description:
-      "An intelligent pricing tool that helps businesses and consumers make smarter decisions with real-time market data.",
+    description: "Intelligent pricing tool with real-time market data for smarter decisions.",
     tags: ["AI/ML", "Pricing", "Analytics"],
+    color: "bg-paper-mint",
+    rotation: "-rotate-0.5",
   },
 ];
 
 export default function Portfolio() {
   return (
-    <section id="portfolio" className="px-6 py-24">
-      <div className="mx-auto max-w-6xl">
+    <section id="portfolio" className="bg-paper-cream paper-texture px-6 py-24 relative">
+      <div className="mx-auto max-w-6xl relative z-10">
         <div className="mb-16 text-center">
-          <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
-            Products We&apos;ve <span className="gradient-text">Built</span>
+          <h2 className="mb-4 text-4xl font-black tracking-tight text-text-dark sm:text-5xl">
+            We don&apos;t just talk.
+            <br />
+            We <span className="accent-underline">ship</span>.
           </h2>
-          <p className="mx-auto max-w-2xl text-muted">
-            Real products, shipped and running in production. We don&apos;t just consult
-            — we build.
+          <p className="mx-auto max-w-2xl text-lg text-text-dark/60">
+            Real products, running in production, built by us from the ground up.
           </p>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2">
+        <div className="grid gap-8 sm:grid-cols-2">
           {projects.map((project) => (
             <a
               key={project.name}
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="card-hover group rounded-xl border border-surface-light bg-surface/50 p-6 backdrop-blur-sm"
+              className={`paper-card paper-shadow-deep group rounded-2xl p-8 ${project.color} ${project.rotation}`}
             >
               <div className="mb-4 flex items-center justify-between">
-                <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
+                <h3 className="text-2xl font-black text-text-dark">
                   {project.name}
                 </h3>
                 <svg
-                  className="h-5 w-5 text-muted transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-primary"
+                  className="h-5 w-5 text-text-dark/40 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-accent"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  strokeWidth={1.5}
+                  strokeWidth={2}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
-                  />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
                 </svg>
               </div>
-              <p className="mb-4 text-sm leading-relaxed text-muted">
+              <p className="mb-6 text-sm leading-relaxed text-text-dark/60">
                 {project.description}
               </p>
               <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary-light"
+                    className="rounded-full bg-dark/10 px-3 py-1 text-xs font-bold text-text-dark/70"
                   >
                     {tag}
                   </span>

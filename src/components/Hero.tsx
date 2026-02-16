@@ -1,39 +1,61 @@
-export default function Hero() {
-  return (
-    <section className="stars relative flex min-h-screen items-center justify-center overflow-hidden px-6 pt-20">
-      {/* Gradient orbs */}
-      <div className="pointer-events-none absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-primary/10 blur-[120px]" />
-      <div className="pointer-events-none absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-accent/10 blur-[120px]" />
+"use client";
 
-      <div className="relative z-10 mx-auto max-w-4xl text-center">
-        <div className="mb-6 inline-block rounded-full border border-surface-light bg-surface/50 px-4 py-1.5 text-sm text-muted backdrop-blur-sm">
-          Software Consultancy &bull; Custom Development &bull; AI Agents
+import PaperShape from "./PaperShape";
+import { useParallax } from "@/hooks/useParallax";
+
+export default function Hero() {
+  const scrollY = useParallax();
+
+  return (
+    <section className="relative min-h-screen overflow-hidden bg-dark flex items-center justify-center px-6 pt-16">
+      {/* Floating paper shapes at different parallax speeds */}
+      <PaperShape color="#ff5f35" size={120} top="10%" left="5%" speed={-0.15} shape="circle" rotate={12} />
+      <PaperShape color="#d4e5f7" size={80} top="20%" right="8%" speed={-0.08} shape="square" rotate={-20} />
+      <PaperShape color="#f2e6d0" size={60} top="65%" left="10%" speed={-0.2} shape="blob" rotate={45} />
+      <PaperShape color="#2dd4bf" size={90} top="70%" right="12%" speed={-0.12} shape="triangle" rotate={15} />
+      <PaperShape color="#f7d4d4" size={50} top="15%" left="40%" speed={-0.05} shape="circle" rotate={0} />
+      <PaperShape color="#d4f0e7" size={70} top="55%" right="30%" speed={-0.18} shape="square" rotate={-10} />
+      <PaperShape color="#ede8e0" size={40} top="80%" left="25%" speed={-0.1} shape="blob" rotate={30} />
+      <PaperShape color="#ff5f35" size={35} top="40%" right="5%" speed={-0.06} shape="square" rotate={60} />
+
+      <div
+        className="relative z-10 mx-auto max-w-5xl text-center"
+        style={{ transform: `translateY(${scrollY * 0.1}px)` }}
+      >
+        {/* Small tag */}
+        <div className="mb-8 inline-block rounded-full bg-dark-soft px-4 py-1.5 text-sm text-paper-white/50 paper-shadow">
+          Software Consultancy &middot; Delaware, USA &middot; Honduras
         </div>
 
-        <h1 className="mb-6 text-5xl font-bold leading-tight tracking-tight sm:text-6xl lg:text-7xl">
-          We Build Software
+        {/* Main headline */}
+        <h1 className="mb-8 text-5xl font-black leading-[1.1] tracking-tight text-paper-white sm:text-7xl lg:text-8xl">
+          We come from
           <br />
-          <span className="gradient-text">That Matters</span>
+          the future.
         </h1>
 
-        <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
-          From custom web apps and AI agents to legacy system modernization —
-          Spaceman Tech turns your ideas into production-ready software.
-          Based in the USA with engineering talent in Honduras.
+        <p className="mx-auto mb-4 max-w-2xl text-xl leading-relaxed text-paper-white/70 sm:text-2xl">
+          We already built <span className="accent-underline">your app</span>.
+          <br />
+          You loved it.
+        </p>
+
+        <p className="mx-auto mb-12 max-w-xl text-lg text-paper-white/40">
+          This is how it all started...
         </p>
 
         <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <a
             href="#contact"
-            className="rounded-lg bg-primary px-8 py-3 text-base font-medium text-white transition-all hover:bg-primary-light hover:shadow-lg hover:shadow-primary/25"
+            className="rounded-lg bg-accent px-8 py-4 text-lg font-bold text-white transition-colors hover:bg-accent-hover paper-shadow"
           >
-            Start a Project
+            Start Your Project
           </a>
           <a
             href="#portfolio"
-            className="rounded-lg border border-surface-light px-8 py-3 text-base font-medium text-foreground transition-colors hover:border-muted hover:bg-surface"
+            className="rounded-lg border-2 border-paper-white/20 px-8 py-4 text-lg font-bold text-paper-white transition-colors hover:border-paper-white/40 hover:bg-paper-white/5"
           >
-            See Our Work
+            See the Proof
           </a>
         </div>
       </div>
