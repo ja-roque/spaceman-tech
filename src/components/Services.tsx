@@ -1,32 +1,32 @@
 const services = [
   {
-    title: "Custom Software",
-    description: "Web apps, mobile apps, platforms — designed and built from scratch for your business.",
-    icon: "</>"
-  },
-  {
-    title: "AI Agents",
-    description: "Custom AI agents, workflow automation, and intelligent integrations that actually work.",
+    title: "AI Agents & Automation",
+    description: "Custom AI agents that handle real workflows — not demos. From lead qualification to internal ops, we automate what slows you down.",
     icon: "AI",
   },
   {
-    title: "Web & Mobile Apps",
-    description: "Modern, responsive applications built with the frameworks that fit your needs.",
-    icon: "[]",
+    title: "LLM Integration",
+    description: "We connect the right model to your data, your tools, and your team. GPT-4, Claude, Gemini — we know the tradeoffs and build what fits.",
+    icon: "⚡",
   },
   {
-    title: "Legacy Systems",
-    description: "We modernize aging systems — migrate, refactor, or rebuild without breaking your business.",
-    icon: ">>",
+    title: "AI-Powered Products",
+    description: "Full products built AI-first. Web apps, mobile apps, internal tools — designed around what AI makes possible, not bolted on after.",
+    icon: "</>",
   },
   {
-    title: "Technical Consulting",
-    description: "Architecture reviews, technology selection, and strategic guidance for your tech decisions.",
+    title: "Data & RAG Pipelines",
+    description: "Make your AI actually know your business. We build retrieval systems, fine-tuning pipelines, and knowledge bases from your data.",
+    icon: "DB",
+  },
+  {
+    title: "AI Strategy & Consulting",
+    description: "Not sure where AI fits in your business? We map it out, prioritize the highest-value use cases, and give you a real roadmap.",
     icon: "?!",
   },
   {
-    title: "Nearshore Teams",
-    description: "English-proficient developers from Honduras. Same timezone. No friction.",
+    title: "Nearshore AI Teams",
+    description: "English-proficient AI engineers from Honduras. Same timezone as the US. Senior talent, no offshore friction.",
     icon: "HN",
   },
 ];
@@ -55,10 +55,10 @@ export default function Services() {
       <div className="mx-auto max-w-6xl relative z-10">
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-4xl font-black tracking-tight text-text-dark sm:text-5xl">
-            What we <span className="accent-underline">do</span>
+            What we <span className="accent-underline">build</span>
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-text-dark/60">
-            End-to-end software services. From concept to deployment and beyond.
+            AI solutions that work in the real world — not proof-of-concepts that die in a slide deck.
           </p>
         </div>
 

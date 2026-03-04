@@ -24,24 +24,24 @@ export default function Hero() {
       >
         {/* Small tag */}
         <div className="mb-8 inline-block rounded-full bg-dark-soft px-4 py-1.5 text-sm text-paper-white/50 paper-shadow">
-          Software Consultancy &middot; Delaware, USA &middot; Honduras
+          AI Agency &middot; Delaware, USA &middot; Honduras
         </div>
 
         {/* Main headline */}
         <h1 className="mb-8 text-5xl font-black leading-[1.1] tracking-tight text-paper-white sm:text-7xl lg:text-8xl">
-          We come from
+          We build
           <br />
-          the future.
+          your AI.
         </h1>
 
         <p className="mx-auto mb-4 max-w-2xl text-xl leading-relaxed text-paper-white/70 sm:text-2xl">
-          We already built <span className="accent-underline">your app</span>.
+          Not another chatbot. The <span className="accent-underline">real AI solution</span>
           <br />
-          You loved it.
+          your business has been waiting for.
         </p>
 
         <p className="mx-auto mb-12 max-w-xl text-lg text-paper-white/40">
-          This is how it all started...
+          Custom-built. Production-ready. Actually useful.
         </p>
 
         <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
@@ -49,13 +49,13 @@ export default function Hero() {
             href="#contact"
             className="rounded-lg bg-accent px-8 py-4 text-lg font-bold text-white transition-colors hover:bg-accent-hover paper-shadow"
           >
-            Start Your Project
+            Build Your AI Solution
           </a>
           <a
-            href="#portfolio"
+            href="#services"
             className="rounded-lg border-2 border-paper-white/20 px-8 py-4 text-lg font-bold text-paper-white transition-colors hover:border-paper-white/40 hover:bg-paper-white/5"
           >
-            See the Proof
+            See What We Do
           </a>
         </div>
       </div>
