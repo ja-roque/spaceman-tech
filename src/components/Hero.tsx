@@ -14,7 +14,7 @@ export default function Hero() {
       <PaperShape color="#f2e6d0" size={60} top="65%" left="10%" speed={-0.2} shape="blob" rotate={45} />
       <PaperShape color="#2dd4bf" size={90} top="70%" right="12%" speed={-0.12} shape="triangle" rotate={15} />
       <PaperShape color="#f7d4d4" size={50} top="15%" left="40%" speed={-0.05} shape="circle" rotate={0} />
-      <PaperShape color="#d4f0e7" size={70} top="55%" right="30%" speed={-0.18} shape="square" rotate={-10} />
+      <PaperShape color="#d4f0e7" size={70} top="55%" right="30%" speed={-0.18} shape="square" rotate={-10} className="hidden sm:block" />
       <PaperShape color="#ede8e0" size={40} top="80%" left="25%" speed={-0.1} shape="blob" rotate={30} />
       <PaperShape color="#ff5f35" size={35} top="40%" right="5%" speed={-0.06} shape="square" rotate={60} />
 
@@ -23,9 +23,9 @@ export default function Hero() {
         style={{ transform: `translateY(${scrollY * 0.1}px)` }}
       >
         {/* Small tag */}
-        <div className="mb-8 inline-block rounded-full bg-dark-soft px-4 py-1.5 text-sm text-paper-white/50 paper-shadow">
-          AI Agency &middot; Delaware, USA &middot; Honduras
-        </div>
+        <p className="mb-8 text-sm uppercase tracking-widest text-paper-white/35 font-medium">
+          AI Agency &nbsp;&middot;&nbsp; Delaware, USA &nbsp;&middot;&nbsp; Honduras
+        </p>
 
         {/* Main headline */}
         <h1 className="mb-8 text-5xl font-black leading-[1.1] tracking-tight text-paper-white sm:text-7xl lg:text-8xl">
