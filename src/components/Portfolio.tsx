@@ -1,35 +1,48 @@
 const projects = [
   {
-    name: "Dayby.Dev",
+    name: "dayby.dev",
     url: "https://dayby.dev",
     description: "Developer productivity tool — track daily work, stay focused on what matters.",
     tags: ["Web App", "Productivity", "SaaS"],
     color: "bg-paper-blue",
     rotation: "-rotate-1",
+    image: null,
   },
   {
-    name: "DonArmando.io",
+    name: "donarmando.io",
     url: "https://donarmando.io",
     description: "Custom platform solving real-world business needs with a polished experience.",
     tags: ["Platform", "Full-Stack", "Custom"],
     color: "bg-paper-sand",
     rotation: "rotate-1",
+    image: null,
   },
   {
-    name: "TripAlbum.app",
+    name: "tripalbum.app",
     url: "https://tripalbum.app",
     description: "Organize and share trip photos and memories in stunning albums.",
     tags: ["Mobile", "Travel", "Photo"],
     color: "bg-paper-coral",
     rotation: "rotate-0.5",
+    image: null,
   },
   {
-    name: "SmartPrice.app",
+    name: "smartprice.app",
     url: "https://smartprice.app",
     description: "Intelligent pricing tool with real-time market data for smarter decisions.",
     tags: ["AI/ML", "Pricing", "Analytics"],
     color: "bg-paper-mint",
     rotation: "-rotate-0.5",
+    image: null,
+  },
+  {
+    name: "jrboatliftelectric.com",
+    url: "https://jrboatliftelectric.com",
+    description: "Marine & dock electrical contractor in Sarasota, FL — full web presence with SEO, lead capture, and WhatsApp integration.",
+    tags: ["Website", "Local SEO", "Lead Gen"],
+    color: "bg-paper-blue",
+    rotation: "-rotate-1",
+    image: "/portfolio-jrboatliftelectric.png",
   },
 ];
 
@@ -55,8 +68,19 @@ export default function Portfolio() {
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              className={`paper-card paper-shadow-deep group rounded-2xl p-8 ${project.color} ${project.rotation}`}
+              className={`paper-card paper-shadow-deep group rounded-2xl overflow-hidden ${project.color} ${project.rotation}`}
             >
+              {project.image && (
+                <div className="w-full overflow-hidden border-b border-dark/10">
+                  <img
+                    src={project.image}
+                    alt={`${project.name} screenshot`}
+                    className="w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    style={{ maxHeight: "180px" }}
+                  />
+                </div>
+              )}
+              <div className={`p-8`}>
               <div className="mb-4 flex items-center justify-between">
                 <h3 className="text-2xl font-black text-text-dark">
                   {project.name}
@@ -83,6 +107,7 @@ export default function Portfolio() {
                     {tag}
                   </span>
                 ))}
+              </div>
               </div>
             </a>
           ))}
