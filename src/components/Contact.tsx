@@ -20,10 +20,10 @@ export default function Contact() {
               </div>
               <h3 className="mb-1 font-bold text-text-dark">Email Us</h3>
               <a
-                href="mailto:hello@spaceman.tech"
+                href="mailto:hello@spacemantech.ai"
                 className="text-sm text-accent font-bold hover:text-accent-hover transition-colors"
               >
-                hello@spaceman.tech
+                hello@spacemantech.ai
               </a>
             </div>
 
@@ -43,7 +43,7 @@ export default function Contact() {
 
           <div className="mt-8 border-t border-dark/10 pt-8">
             <a
-              href="mailto:hello@spaceman.tech?subject=Project%20Inquiry"
+              href="mailto:hello@spacemantech.ai?subject=Project%20Inquiry"
               className="inline-block rounded-lg bg-accent px-8 py-4 text-base font-bold text-white transition-colors hover:bg-accent-hover paper-shadow"
             >
               Send Us a Message
