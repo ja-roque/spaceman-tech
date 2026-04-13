@@ -36,6 +36,15 @@ const projects = [
     image: null,
   },
   {
+    name: "unveiledparis.com",
+    url: "https://unveiledparis.com",
+    description: "Curated Paris travel experience — discover the city's hidden gems and iconic spots.",
+    tags: ["Website", "Travel", "Lifestyle"],
+    color: "bg-paper-sand",
+    rotation: "rotate-1",
+    image: "/portfolio-unveiledparis.png",
+  },
+  {
     name: "jrboatliftelectric.com",
     url: "https://jrboatliftelectric.com",
     description: "Marine & dock electrical contractor in Sarasota, FL — full web presence with SEO, lead capture, and WhatsApp integration.",
