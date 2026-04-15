@@ -6,7 +6,7 @@ const projects = [
     tags: ["Web App", "Productivity", "SaaS"],
     color: "bg-paper-blue",
     rotation: "-rotate-1",
-    image: null,
+    image: "/portfolio-dayby.png",
   },
   {
     name: "donarmando.io",
@@ -15,7 +15,7 @@ const projects = [
     tags: ["Platform", "Full-Stack", "Custom"],
     color: "bg-paper-sand",
     rotation: "rotate-1",
-    image: null,
+    image: "/portfolio-donarmando.png",
   },
   {
     name: "tripalbum.app",
@@ -24,16 +24,16 @@ const projects = [
     tags: ["Mobile", "Travel", "Photo"],
     color: "bg-paper-coral",
     rotation: "rotate-0.5",
-    image: null,
+    image: "/portfolio-tripalbum.png",
   },
   {
-    name: "smartprice.app",
-    url: "https://smartprice.app",
+    name: "smartprice.dev",
+    url: "https://smartprice.dev",
     description: "Intelligent pricing tool with real-time market data for smarter decisions.",
     tags: ["AI/ML", "Pricing", "Analytics"],
     color: "bg-paper-mint",
     rotation: "-rotate-0.5",
-    image: null,
+    image: "/portfolio-smartprice.png",
   },
   {
     name: "unveiledparis.com",
@@ -89,7 +89,7 @@ export default function Portfolio() {
                   />
                 </div>
               )}
-              <div className={`p-8`}>
+              <div className="liquid-glass p-8">
               <div className="mb-4 flex items-center justify-between">
                 <h3 className="text-2xl font-black text-text-dark">
                   {project.name}

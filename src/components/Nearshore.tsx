@@ -27,7 +27,7 @@ export default function Nearshore() {
       <div className="mx-auto max-w-6xl relative z-10">
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-4xl font-black tracking-tight text-text-dark sm:text-5xl">
-            Your team in <span className="accent-underline">Honduras</span>
+            Your team in <span className="accent-underline">Central America</span>
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-text-dark/60">
             Scale your engineering team with skilled developers who speak your language
