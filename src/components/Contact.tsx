@@ -46,7 +46,7 @@ export default function Contact() {
               <p className="text-text-dark/60">We&apos;ll get back to you shortly.</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="text-left space-y-5">
+            <form onSubmit={handleSubmit} className="text-left space-y-5" suppressHydrationWarning>
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
                   <label className="mb-1.5 block text-sm font-bold text-text-dark">Name</label>
@@ -57,6 +57,7 @@ export default function Contact() {
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     placeholder="Jane Smith"
                     className="w-full rounded-lg border border-dark/15 bg-paper-cream px-4 py-3 text-sm text-text-dark placeholder:text-text-dark/30 focus:border-accent focus:outline-none"
+                    suppressHydrationWarning
                   />
                 </div>
                 <div>
@@ -68,6 +69,7 @@ export default function Contact() {
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     placeholder="jane@company.com"
                     className="w-full rounded-lg border border-dark/15 bg-paper-cream px-4 py-3 text-sm text-text-dark placeholder:text-text-dark/30 focus:border-accent focus:outline-none"
+                    suppressHydrationWarning
                   />
                 </div>
               </div>
@@ -80,6 +82,7 @@ export default function Contact() {
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   placeholder="Tell us about your project..."
                   className="w-full rounded-lg border border-dark/15 bg-paper-cream px-4 py-3 text-sm text-text-dark placeholder:text-text-dark/30 focus:border-accent focus:outline-none resize-none"
+                  suppressHydrationWarning
                 />
               </div>
 

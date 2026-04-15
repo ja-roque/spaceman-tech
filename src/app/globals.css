@@ -125,6 +125,12 @@ body {
   height: auto;
 }
 
+/* Wave divider animation */
+@keyframes wave-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
 /* iOS Liquid Glass */
 .liquid-glass {
   backdrop-filter: blur(24px) saturate(180%) brightness(1.05);
