@@ -100,7 +100,7 @@ export default function Contact() {
                 </button>
                 <div className="flex flex-col items-center gap-2 sm:items-end">
                   <a
-                    href="https://wa.me/13024482304"
+                    href="https://wa.me/13024482304?text=Hi%2C%20I%27m%20interested%20in%20building%20something%20with%20Spaceman%20Tech."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-lg bg-[#25D366] px-5 py-3 text-sm font-bold text-white transition-opacity hover:opacity-90"
