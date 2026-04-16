@@ -48,6 +48,7 @@ export default function AdminPage() {
   const [view, setView] = useState<"leads" | "chat">("leads");
   const [reply, setReply] = useState("");
   const [sending, setSending] = useState(false);
+  const [reengaging, setReengaging] = useState(false);
 
   const loadConversations = useCallback(async () => {
     const res = await fetch("/api/admin/conversations");
@@ -121,6 +122,18 @@ export default function AdminPage() {
     });
     await loadConversation(selected.phone);
     await loadConversations();
+  }
+
+  async function reengage(lang: "en" | "es") {
+    if (!selected) return;
+    setReengaging(true);
+    await fetch("/api/admin/reengage", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ phone: selected.phone, language: lang }),
+    });
+    setReengaging(false);
+    await loadConversation(selected.phone);
   }
 
   async function triggerPaymentPlan() {
@@ -201,7 +214,7 @@ export default function AdminPage() {
                     <p className="text-xs text-text-dark/50">{c.company || c.phone}</p>
                   </div>
                   <div className="flex flex-col items-end gap-1">
-                    <span className="text-xs text-text-dark/30">{timeAgo(c.updatedAt)}</span>
+                    <span className="text-xs text-text-dark/30" title={new Date(c.updatedAt).toLocaleString()}>active {timeAgo(c.updatedAt)}</span>
                     <div className="flex gap-1 flex-wrap justify-end">
                       {c.flagPaymentPlan && !c.offerPaymentPlan && <span className="text-xs bg-yellow-400 text-dark rounded-full px-2 py-0.5 font-bold">$ Plan?</span>}
                       {c.offerPaymentPlan && <span className="text-xs bg-green-500 text-white rounded-full px-2 py-0.5">Plan ON</span>}
@@ -236,7 +249,7 @@ export default function AdminPage() {
 
                 {/* Footer */}
                 <div className="mt-3 pt-3 border-t border-dark/5 flex items-center justify-between">
-                  <span className="text-xs text-text-dark/30">{c.messageCount} messages</span>
+                  <span className="text-xs text-text-dark/30">{c.messageCount} msgs · started {timeAgo(c.createdAt)}</span>
                   <span className="text-xs text-accent font-bold">Open chat →</span>
                 </div>
               </button>
@@ -283,6 +296,24 @@ export default function AdminPage() {
           {selected?.offerPaymentPlan && (
             <span className="rounded-lg px-4 py-1.5 text-sm font-bold bg-green-500 text-white">Plan Active</span>
           )}
+          <div className="flex gap-1">
+            <button
+              onClick={() => reengage(selected?.language === "es" ? "es" : "en")}
+              disabled={reengaging}
+              title="Send cold lead re-engagement template"
+              className="rounded-l-lg px-3 py-1.5 text-sm font-bold bg-paper-sand text-text-dark hover:bg-paper-mint transition-colors disabled:opacity-50"
+            >
+              {reengaging ? "..." : "Re-engage"}
+            </button>
+            <button
+              onClick={() => reengage(selected?.language === "es" ? "en" : "es")}
+              disabled={reengaging}
+              title={`Send in ${selected?.language === "es" ? "English" : "Spanish"}`}
+              className="rounded-r-lg px-2 py-1.5 text-xs font-bold bg-paper-sand/60 text-text-dark/60 hover:bg-paper-mint transition-colors disabled:opacity-50 border-l border-dark/10"
+            >
+              {selected?.language === "es" ? "EN" : "ES"}
+            </button>
+          </div>
           <button
             onClick={toggleBlock}
             className={`rounded-lg px-4 py-1.5 text-sm font-bold transition-colors ${selected?.blocked ? "bg-dark text-paper-white" : "bg-paper-cream text-text-dark"}`}
@@ -341,7 +372,8 @@ export default function AdminPage() {
               { label: "Est. Cost", value: selected?.estimatedCost },
               { label: "Timeline", value: selected?.estimatedTimeline },
               { label: "Messages", value: String(selected?.messageCount ?? 0) },
-              { label: "Started", value: selected ? new Date(selected.createdAt).toLocaleDateString() : null },
+              { label: "Started", value: selected ? new Date(selected.createdAt).toLocaleDateString([], { month: "short", day: "numeric", year: "numeric" }) : null },
+              { label: "Last Active", value: selected ? `${timeAgo(selected.updatedAt)} · ${new Date(selected.updatedAt).toLocaleDateString([], { month: "short", day: "numeric" })}` : null },
             ].map(({ label, value }) => value ? (
               <div key={label}>
                 <p className="text-xs font-bold text-text-dark/40 uppercase tracking-wider mb-0.5">{label}</p>
