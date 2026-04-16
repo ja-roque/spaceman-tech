@@ -13,23 +13,41 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Spaceman Tech | Software Consultancy & Custom Development",
+  title: "Spaceman Tech | Custom Software, Web Apps & AI Agents",
   description:
-    "Spaceman Tech LLC builds custom software, web apps, AI agents, and provides nearshore engineering talent from Honduras. From idea to launch, we build what matters.",
+    "Spaceman Tech builds custom software, web apps, mobile apps, and AI agents for businesses ready to move fast. Based in Delaware, engineering team in Central America.",
   keywords: [
-    "software consultancy",
     "custom software development",
+    "web app development",
     "AI agents",
-    "web applications",
-    "nearshore outsourcing",
-    "Honduras developers",
-    "legacy system modernization",
+    "mobile app development",
+    "nearshore software agency",
+    "Central America developers",
+    "software consultancy",
   ],
+  metadataBase: new URL("https://spacemantech.ai"),
   openGraph: {
-    title: "Spaceman Tech | Software Consultancy & Custom Development",
+    title: "Spaceman Tech | Custom Software, Web Apps & AI Agents",
     description:
-      "We build custom software, web apps, AI agents, and provide nearshore engineering talent. From idea to launch.",
+      "We build custom software, web apps, mobile apps, and AI agents. From idea to launch — fast, production-ready, built to last.",
     type: "website",
+    url: "https://spacemantech.ai",
+    siteName: "Spaceman Tech",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Spaceman Tech — Custom Software & AI Agents",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Spaceman Tech | Custom Software, Web Apps & AI Agents",
+    description:
+      "We build custom software, web apps, mobile apps, and AI agents. From idea to launch — fast, production-ready, built to last.",
+    images: ["/og-image.png"],
   },
 };
 
