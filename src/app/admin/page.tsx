@@ -25,6 +25,7 @@ interface Conversation {
   offerPaymentPlan: boolean;
   notes: string | null;
   stage: string;
+  rateLimitOverride: boolean;
   messageCount: number;
   createdAt: string;
   updatedAt: string;
@@ -296,57 +297,59 @@ export default function AdminPage() {
   }
 
   // ── CHAT VIEW ───────────────────────────────────────────────────────────────
+  const [showPanel, setShowPanel] = useState(false);
+
   return (
     <div className="min-h-screen bg-dark flex flex-col" style={{ fontFamily: "var(--font-geist-sans)" }}>
       {/* Top bar */}
-      <div className="bg-paper-white border-b border-dark/10 px-4 py-3 flex items-center gap-3">
-        <button onClick={() => setView("leads")} className="text-sm text-text-dark/50 hover:text-accent font-bold">
+      <div className="bg-paper-white border-b border-dark/10 px-3 py-2 flex items-center gap-2 flex-wrap">
+        <button onClick={() => setView("leads")} className="text-sm text-text-dark/50 hover:text-accent font-bold shrink-0">
           ← Leads
         </button>
         <span className="text-dark/20">/</span>
-        <span className="font-black text-text-dark">{selected?.name || selected?.phone}</span>
-        {selected?.company && <span className="text-sm text-text-dark/40">{selected.company}</span>}
-        <div className="ml-auto flex gap-2">
+        <span className="font-black text-text-dark text-sm truncate max-w-[120px]">{selected?.name || selected?.phone}</span>
+        <div className="ml-auto flex gap-1.5 flex-wrap justify-end">
           <button
             onClick={toggleTakeover}
-            className={`rounded-lg px-4 py-1.5 text-sm font-bold transition-colors ${selected?.humanTakeover ? "bg-accent text-white" : "bg-paper-sand text-text-dark"}`}
+            className={`rounded-lg px-3 py-1.5 text-xs font-bold transition-colors ${selected?.humanTakeover ? "bg-accent text-white" : "bg-paper-sand text-text-dark"}`}
           >
-            {selected?.humanTakeover ? "AI Paused" : "Take Over"}
+            {selected?.humanTakeover ? "AI Off" : "Take Over"}
           </button>
           {selected?.flagPaymentPlan && !selected?.offerPaymentPlan && (
-            <button
-              onClick={triggerPaymentPlan}
-              className="rounded-lg px-4 py-1.5 text-sm font-bold bg-yellow-400 text-dark hover:bg-yellow-300 transition-colors"
-            >
-              Offer Payment Plan
+            <button onClick={triggerPaymentPlan} className="rounded-lg px-3 py-1.5 text-xs font-bold bg-yellow-400 text-dark hover:bg-yellow-300 transition-colors">
+              Payment Plan
             </button>
           )}
           {selected?.offerPaymentPlan && (
-            <span className="rounded-lg px-4 py-1.5 text-sm font-bold bg-green-500 text-white">Plan Active</span>
+            <span className="rounded-lg px-3 py-1.5 text-xs font-bold bg-green-500 text-white">Plan ON</span>
           )}
-          <div className="flex gap-1">
-            <button
-              onClick={() => reengage(selected?.language === "es" ? "es" : "en")}
-              disabled={reengaging}
-              title="Send cold lead re-engagement template"
-              className="rounded-l-lg px-3 py-1.5 text-sm font-bold bg-paper-sand text-text-dark hover:bg-paper-mint transition-colors disabled:opacity-50"
-            >
+          <button
+            onClick={async () => {
+              await fetch("/api/admin/conversations", {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ phone: selected?.phone, rateLimitOverride: !selected?.rateLimitOverride }),
+              });
+              await loadConversation(selected!.phone);
+            }}
+            className={`rounded-lg px-3 py-1.5 text-xs font-bold transition-colors ${selected?.rateLimitOverride ? "bg-orange-400 text-white" : "bg-paper-cream text-text-dark"}`}
+            title="Bypass rate limit for this lead"
+          >
+            {selected?.rateLimitOverride ? "Limit Off" : "Unlock"}
+          </button>
+          <div className="flex gap-0.5">
+            <button onClick={() => reengage(selected?.language === "es" ? "es" : "en")} disabled={reengaging} className="rounded-l-lg px-3 py-1.5 text-xs font-bold bg-paper-sand text-text-dark hover:bg-paper-mint transition-colors disabled:opacity-50">
               {reengaging ? "..." : "Re-engage"}
             </button>
-            <button
-              onClick={() => reengage(selected?.language === "es" ? "en" : "es")}
-              disabled={reengaging}
-              title={`Send in ${selected?.language === "es" ? "English" : "Spanish"}`}
-              className="rounded-r-lg px-2 py-1.5 text-xs font-bold bg-paper-sand/60 text-text-dark/60 hover:bg-paper-mint transition-colors disabled:opacity-50 border-l border-dark/10"
-            >
+            <button onClick={() => reengage(selected?.language === "es" ? "en" : "es")} disabled={reengaging} className="rounded-r-lg px-2 py-1.5 text-xs font-bold bg-paper-sand/60 text-text-dark/60 hover:bg-paper-mint transition-colors disabled:opacity-50 border-l border-dark/10">
               {selected?.language === "es" ? "EN" : "ES"}
             </button>
           </div>
-          <button
-            onClick={toggleBlock}
-            className={`rounded-lg px-4 py-1.5 text-sm font-bold transition-colors ${selected?.blocked ? "bg-dark text-paper-white" : "bg-paper-cream text-text-dark"}`}
-          >
+          <button onClick={toggleBlock} className={`rounded-lg px-3 py-1.5 text-xs font-bold transition-colors ${selected?.blocked ? "bg-dark text-paper-white" : "bg-paper-cream text-text-dark"}`}>
             {selected?.blocked ? "Unblock" : "Block"}
+          </button>
+          <button onClick={() => setShowPanel((v) => !v)} className="rounded-lg px-3 py-1.5 text-xs font-bold bg-paper-blue text-text-dark md:hidden">
+            Info
           </button>
         </div>
       </div>
@@ -354,10 +357,10 @@ export default function AdminPage() {
       <div className="flex flex-1 min-h-0 overflow-hidden">
         {/* Messages */}
         <div className="flex-1 flex flex-col min-w-0">
-          <div className="flex-1 overflow-y-auto px-6 py-4 space-y-3 bg-paper-cream">
+          <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3 bg-paper-cream">
             {selected?.messages.map((m) => (
               <div key={m.id} className={`flex ${m.role === "user" ? "justify-start" : "justify-end"}`}>
-                <div className={`max-w-sm rounded-2xl px-4 py-2.5 text-sm ${m.role === "user" ? "bg-paper-white text-text-dark" : "bg-accent text-white"}`}>
+                <div className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm ${m.role === "user" ? "bg-paper-white text-text-dark" : "bg-accent text-white"}`}>
                   {m.content}
                   <p className={`text-xs mt-1 ${m.role === "user" ? "text-text-dark/30" : "text-white/50"}`}>
                     {new Date(m.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
@@ -366,27 +369,27 @@ export default function AdminPage() {
               </div>
             ))}
           </div>
-          <div className="bg-paper-white border-t border-dark/10 px-6 py-4 flex gap-3">
+          <div className="bg-paper-white border-t border-dark/10 px-3 py-3 flex gap-2">
             <textarea
               value={reply}
               onChange={(e) => setReply(e.target.value)}
               onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendReply(); } }}
               placeholder="Reply as Spaceman Tech..."
               rows={2}
-              className="flex-1 rounded-lg border border-dark/15 bg-paper-cream px-4 py-2.5 text-sm text-text-dark resize-none focus:outline-none focus:border-accent"
+              className="flex-1 rounded-lg border border-dark/15 bg-paper-cream px-3 py-2.5 text-sm text-text-dark resize-none focus:outline-none focus:border-accent"
             />
             <button
               onClick={sendReply}
               disabled={sending || !reply.trim()}
-              className="rounded-lg bg-accent px-6 py-2 font-bold text-white hover:bg-accent-hover disabled:opacity-50 self-end"
+              className="rounded-lg bg-accent px-4 py-2 font-bold text-white hover:bg-accent-hover disabled:opacity-50 self-end"
             >
               {sending ? "..." : "Send"}
             </button>
           </div>
         </div>
 
-        {/* Lead detail panel */}
-        <div className="w-64 bg-paper-white border-l border-dark/10 overflow-y-auto flex-shrink-0">
+        {/* Lead detail panel — hidden on mobile unless toggled */}
+        <div className={`${showPanel ? "flex" : "hidden"} md:flex w-64 flex-col bg-paper-white border-l border-dark/10 overflow-y-auto flex-shrink-0 absolute md:relative inset-y-0 right-0 z-20 shadow-xl md:shadow-none`}>
           <div className="p-4 border-b border-dark/10">
             <h3 className="font-black text-sm text-text-dark">Lead Summary</h3>
           </div>

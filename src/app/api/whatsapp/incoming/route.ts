@@ -147,22 +147,24 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true });
   }
 
-  // Rate limit: max messages per hour
-  const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
-  const recentCount = await prisma.message.count({
-    where: { conversationId: convo.id, role: "user", createdAt: { gte: oneHourAgo } },
-  });
-  if (recentCount >= RATE_LIMITS.maxMessagesPerHour) {
-    await randomDelay();
-    await sendWhatsApp(from, "You've sent a lot of messages — give it an hour and try again, or email us at hello@spacemantech.ai.");
-    return NextResponse.json({ ok: true });
-  }
+  // Rate limit: max messages per hour (skipped if override is on)
+  if (!convo.rateLimitOverride) {
+    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
+    const recentCount = await prisma.message.count({
+      where: { conversationId: convo.id, role: "user", createdAt: { gte: oneHourAgo } },
+    });
+    if (recentCount >= RATE_LIMITS.maxMessagesPerHour) {
+      await randomDelay();
+      await sendWhatsApp(from, "You've sent a lot of messages. Give it an hour and try again, or email us at hello@spacemantech.ai.");
+      return NextResponse.json({ ok: true });
+    }
 
-  // Max conversation length
-  if (convo.messageCount >= RATE_LIMITS.maxMessagesPerConversation) {
-    await randomDelay();
-    await sendWhatsApp(from, "Let's continue over email — reach us at hello@spacemantech.ai and we'll take it from there.");
-    return NextResponse.json({ ok: true });
+    // Max conversation length
+    if (convo.messageCount >= RATE_LIMITS.maxMessagesPerConversation) {
+      await randomDelay();
+      await sendWhatsApp(from, "Let's continue over email. Reach us at hello@spacemantech.ai and we'll take it from there.");
+      return NextResponse.json({ ok: true });
+    }
   }
 
   // Save user message

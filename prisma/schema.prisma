@@ -24,6 +24,7 @@ model Conversation {
   context           String?
   notes             String?
   stage             String    @default("qualifying")
+  rateLimitOverride Boolean   @default(false)
   messageCount      Int       @default(0)
   createdAt         DateTime  @default(now())
   updatedAt         DateTime  @updatedAt
