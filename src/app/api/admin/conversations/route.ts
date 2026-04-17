@@ -19,13 +19,14 @@ export async function GET(req: NextRequest) {
 export async function PATCH(req: NextRequest) {
   if (!isAuthed(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const { phone, humanTakeover, blocked, offerPaymentPlan, flagPaymentPlan, context } = await req.json();
+  const { phone, humanTakeover, blocked, offerPaymentPlan, flagPaymentPlan, context, notes } = await req.json();
   const data: Record<string, unknown> = {};
   if (humanTakeover !== undefined) data.humanTakeover = humanTakeover;
   if (blocked !== undefined) data.blocked = blocked;
   if (offerPaymentPlan !== undefined) data.offerPaymentPlan = offerPaymentPlan;
   if (flagPaymentPlan !== undefined) data.flagPaymentPlan = flagPaymentPlan;
   if (context !== undefined) data.context = context;
+  if (notes !== undefined) data.notes = notes;
 
   const updated = await prisma.conversation.update({ where: { phone }, data });
   return NextResponse.json(updated);

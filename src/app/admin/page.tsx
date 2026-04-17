@@ -23,6 +23,7 @@ interface Conversation {
   blocked: boolean;
   flagPaymentPlan: boolean;
   offerPaymentPlan: boolean;
+  notes: string | null;
   messageCount: number;
   createdAt: string;
   updatedAt: string;
@@ -49,6 +50,8 @@ export default function AdminPage() {
   const [reply, setReply] = useState("");
   const [sending, setSending] = useState(false);
   const [reengaging, setReengaging] = useState(false);
+  const [notes, setNotes] = useState("");
+  const [savingNotes, setSavingNotes] = useState(false);
 
   const loadConversations = useCallback(async () => {
     const res = await fetch("/api/admin/conversations");
@@ -85,8 +88,24 @@ export default function AdminPage() {
   }
 
   async function openChat(c: Conversation) {
-    await loadConversation(c.phone);
+    const res = await fetch(`/api/admin/conversations/${encodeURIComponent(c.phone)}`);
+    if (res.ok) {
+      const data = await res.json();
+      setSelected(data);
+      setNotes(data.notes || "");
+    }
     setView("chat");
+  }
+
+  async function saveNotes() {
+    if (!selected) return;
+    setSavingNotes(true);
+    await fetch("/api/admin/conversations", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ phone: selected.phone, notes }),
+    });
+    setSavingNotes(false);
   }
 
   async function sendReply() {
@@ -392,6 +411,25 @@ export default function AdminPage() {
               <div className={`rounded-lg px-3 py-1.5 text-xs font-bold text-center ${selected?.humanTakeover ? "bg-accent text-white" : "bg-paper-sand text-text-dark"}`}>
                 {selected?.humanTakeover ? "Human mode" : "AI active"}
               </div>
+            </div>
+
+            <div className="pt-2 border-t border-dark/10">
+              <p className="text-xs font-bold text-text-dark/40 uppercase tracking-wider mb-1.5">Notes</p>
+              <textarea
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+                onBlur={saveNotes}
+                placeholder="Call notes, context, follow-up reminders..."
+                rows={5}
+                className="w-full rounded-lg border border-dark/15 bg-paper-cream px-3 py-2 text-xs text-text-dark placeholder:text-text-dark/30 focus:outline-none focus:border-accent resize-none"
+              />
+              <button
+                onClick={saveNotes}
+                disabled={savingNotes}
+                className="mt-1.5 w-full rounded-lg bg-paper-sand px-3 py-1.5 text-xs font-bold text-text-dark hover:bg-paper-mint transition-colors disabled:opacity-50"
+              >
+                {savingNotes ? "Saving..." : "Save notes"}
+              </button>
             </div>
           </div>
         </div>
