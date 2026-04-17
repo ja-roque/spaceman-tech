@@ -2,13 +2,29 @@
 
 import PaperShape from "./PaperShape";
 import { useParallax } from "@/hooks/useParallax";
+import { useState, useEffect } from "react";
+
+const WORDS = ["AI.", "apps.", "websites.", "software.", "automation.", "AI."];
+const INTERVAL = 2600;
 
 export default function Hero() {
   const scrollY = useParallax();
+  const [index, setIndex] = useState(0);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setVisible(false);
+      setTimeout(() => {
+        setIndex((i) => (i + 1) % WORDS.length);
+        setVisible(true);
+      }, 300);
+    }, INTERVAL);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-dark flex items-center justify-center px-6 pt-16">
-      {/* Floating paper shapes at different parallax speeds */}
       <PaperShape color="#ff5f35" size={120} top="10%" left="5%" speed={-0.15} shape="circle" rotate={12} />
       <PaperShape color="#d4e5f7" size={80} top="20%" right="8%" speed={-0.08} shape="square" rotate={-20} />
       <PaperShape color="#f2e6d0" size={60} top="65%" left="10%" speed={-0.2} shape="blob" rotate={45} />
@@ -22,26 +38,33 @@ export default function Hero() {
         className="relative z-10 mx-auto max-w-5xl text-center"
         style={{ transform: `translateY(${scrollY * 0.1}px)` }}
       >
-        {/* Small tag */}
         <p className="mb-8 text-sm uppercase tracking-widest text-paper-white/35 font-medium">
-          AI Agency &nbsp;&middot;&nbsp; Delaware, USA &nbsp;&middot;&nbsp; Honduras
+          Software Agency &nbsp;&middot;&nbsp; Delaware, USA &nbsp;&middot;&nbsp; Central America
         </p>
 
-        {/* Main headline */}
         <h1 className="mb-8 text-5xl font-black leading-[1.1] tracking-tight text-paper-white sm:text-7xl lg:text-8xl">
           We build
           <br />
-          your AI.
+          your{" "}
+          <span
+            className="text-accent inline-block transition-all duration-300"
+            style={{
+              opacity: visible ? 1 : 0,
+              transform: visible ? "translateY(0)" : "translateY(-20px)",
+            }}
+          >
+            {WORDS[index]}
+          </span>
         </h1>
 
         <p className="mx-auto mb-4 max-w-2xl text-xl leading-relaxed text-paper-white/70 sm:text-2xl">
-          Not another chatbot. The <span className="accent-underline">real AI solution</span>
+          From idea to launch — <span className="accent-underline">custom-built</span>, production-ready,
           <br />
-          your business has been waiting for.
+          designed to last.
         </p>
 
         <p className="mx-auto mb-12 max-w-xl text-lg text-paper-white/40">
-          Custom-built. Production-ready. Actually useful.
+          Web apps. Mobile apps. AI agents. Websites. Whatever your business needs.
         </p>
 
         <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
@@ -49,7 +72,7 @@ export default function Hero() {
             href="#contact"
             className="rounded-lg bg-accent px-8 py-4 text-lg font-bold text-white transition-colors hover:bg-accent-hover paper-shadow"
           >
-            Build Your AI Solution
+            Start a Project
           </a>
           <a
             href="#services"

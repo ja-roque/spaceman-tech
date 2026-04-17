@@ -126,6 +126,19 @@ body {
 }
 
 /* Wave divider animation */
+@keyframes type-slide {
+  0%, 15%   { opacity: 1; transform: translateY(0); }
+  20%       { opacity: 0; transform: translateY(-40px); }
+  21%       { opacity: 0; transform: translateY(40px); }
+  36%, 51%  { opacity: 1; transform: translateY(0); }
+  56%       { opacity: 0; transform: translateY(-40px); }
+  57%       { opacity: 0; transform: translateY(40px); }
+  72%, 87%  { opacity: 1; transform: translateY(0); }
+  92%       { opacity: 0; transform: translateY(-40px); }
+  93%       { opacity: 0; transform: translateY(40px); }
+  100%      { opacity: 1; transform: translateY(0); }
+}
+
 @keyframes wave-scroll {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
