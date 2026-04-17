@@ -80,8 +80,8 @@ Present this as a helpful option, not a desperate offer. Keep it casual and conf
 
 // Rate limiting config
 export const RATE_LIMITS = {
-  maxMessagesPerHour: 10,
-  maxMessagesPerConversation: 20,
+  maxMessagesPerHour: 20,
+  maxMessagesPerConversation: 40,
   minDelayMs: 1500,
   maxDelayMs: 4000,
 };
