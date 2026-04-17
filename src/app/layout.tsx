@@ -26,6 +26,13 @@ export const metadata: Metadata = {
     "software consultancy",
   ],
   metadataBase: new URL("https://spacemantech.ai"),
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
   openGraph: {
     title: "Spaceman Tech | Custom Software, Web Apps & AI Agents",
     description:
