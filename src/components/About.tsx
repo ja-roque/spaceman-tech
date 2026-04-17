@@ -9,19 +9,15 @@ export default function About() {
             </h2>
             <div className="space-y-4 text-text-dark/70 leading-relaxed">
               <p>
-                Spaceman Tech is an AI agency. We help companies figure out
-                what AI can actually do for their business, then we build it.
-                Not a template. Not a wrapper around ChatGPT. The real thing.
+                Spaceman Tech is a software agency. We build custom software for businesses that want to move fast and own what they ship.
+                Not templates. Not off-the-shelf tools. The real thing, built for you.
               </p>
               <p>
-                We&apos;re a Delaware-registered company with an engineering team
-                in Honduras through our sister company, Ingenier&iacute;a y Desarrollo
-                &Aacute;gil S de RL. Founded by engineers who have shipped AI in
-                production, not just talked about it.
+                We are a Delaware-registered company with a senior engineering team in Central America.
+                Same quality you would get from a US agency, at a fraction of the cost.
               </p>
               <p>
-                Every company will have an AI strategy. The ones that win will
-                have built it right. That&apos;s where we come in.
+                From websites to full SaaS products to AI agents, we build whatever your business needs and make sure it lasts.
               </p>
             </div>
           </div>

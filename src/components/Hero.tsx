@@ -39,7 +39,7 @@ export default function Hero() {
         style={{ transform: `translateY(${scrollY * 0.1}px)` }}
       >
         <p className="mb-8 text-sm uppercase tracking-widest text-paper-white/35 font-medium">
-          Software Agency &nbsp;&middot;&nbsp; Delaware, USA &nbsp;&middot;&nbsp; Central America
+          Software Agency &nbsp;&middot;&nbsp; Delaware, USA
         </p>
 
         <h1 className="mb-8 text-5xl font-black leading-[1.1] tracking-tight text-paper-white sm:text-7xl lg:text-8xl">
@@ -69,10 +69,12 @@ export default function Hero() {
 
         <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <a
-            href="#contact"
+            href="https://wa.me/13024482304?text=Hi%2C%20I%27m%20interested%20in%20building%20something%20with%20Spaceman%20Tech."
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-lg bg-accent px-8 py-4 text-lg font-bold text-white transition-colors hover:bg-accent-hover paper-shadow"
           >
-            Start a Project
+            Get a Quote in Minutes
           </a>
           <a
             href="#services"
