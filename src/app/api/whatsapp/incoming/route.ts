@@ -306,6 +306,18 @@ Answer with one word only:`
       if (newStage === "ready") {
         const leadName = convo.name || from;
         await sendWhatsApp(OWNER_PHONE, `🎯 ${leadName} is ready to close. Open /admin to review.`);
+        // Fire Google Ads conversion server-side
+        try {
+          await fetch("https://www.googleadservices.com/pagead/conversion/953427139/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams({
+              label: "9UUVCJmP3Z0cEMPJ0MYD",
+              value: "1",
+              currency_code: "USD",
+            }).toString(),
+          });
+        } catch {}
       }
     }
   }).catch(() => {});
