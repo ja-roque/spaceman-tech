@@ -1,17 +1,17 @@
 const services = [
   {
     title: "AI Agents & Automation",
-    description: "Custom AI agents that handle real workflows — not demos. From lead qualification to internal ops, we automate what slows you down.",
+    description: "Custom AI agents that handle real workflows, not demos. From lead qualification to internal ops, we automate what slows you down.",
     icon: "AI",
   },
   {
     title: "LLM Integration",
-    description: "We connect the right model to your data, your tools, and your team. GPT-4, Claude, Gemini — we know the tradeoffs and build what fits.",
+    description: "We connect the right model to your data, your tools, and your team. GPT-4, Claude, Gemini. We know the tradeoffs and build what fits.",
     icon: "⚡",
   },
   {
     title: "AI-Powered Products",
-    description: "Full products built AI-first. Web apps, mobile apps, internal tools — designed around what AI makes possible, not bolted on after.",
+    description: "Full products built AI-first. Web apps, mobile apps, internal tools, designed around what AI makes possible, not bolted on after.",
     icon: "</>",
   },
   {
@@ -58,7 +58,7 @@ export default function Services() {
             What we <span className="accent-underline">build</span>
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-text-dark/60">
-            AI solutions that work in the real world — not proof-of-concepts that die in a slide deck.
+            Software that works in the real world, not proof-of-concepts that die in a slide deck.
           </p>
         </div>
 

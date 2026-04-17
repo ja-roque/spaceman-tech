@@ -4,7 +4,7 @@ import PaperShape from "./PaperShape";
 import { useParallax } from "@/hooks/useParallax";
 import { useState, useEffect } from "react";
 
-const WORDS = ["AI.", "apps.", "websites.", "software.", "automation.", "AI."];
+const WORDS = ["AI.", "apps.", "websites.", "software.", "automation."];
 const INTERVAL = 2600;
 
 export default function Hero() {
@@ -58,7 +58,7 @@ export default function Hero() {
         </h1>
 
         <p className="mx-auto mb-4 max-w-2xl text-xl leading-relaxed text-paper-white/70 sm:text-2xl">
-          From idea to launch — <span className="accent-underline">custom-built</span>, production-ready,
+          From idea to launch, <span className="accent-underline">custom-built</span>, production-ready,
           <br />
           designed to last.
         </p>

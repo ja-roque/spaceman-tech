@@ -2,7 +2,7 @@ const projects = [
   {
     name: "dayby.dev",
     url: "https://dayby.dev",
-    description: "Developer productivity tool — track daily work, stay focused on what matters.",
+    description: "Developer productivity tool. Track daily work and stay focused on what matters.",
     tags: ["Web App", "Productivity", "SaaS"],
     color: "bg-paper-blue",
     rotation: "-rotate-1",
@@ -38,7 +38,7 @@ const projects = [
   {
     name: "unveiledparis.com",
     url: "https://unveiledparis.com",
-    description: "Curated Paris travel experience — discover the city's hidden gems and iconic spots.",
+    description: "Curated Paris travel experience. Discover the city's hidden gems and iconic spots.",
     tags: ["Website", "Travel", "Lifestyle"],
     color: "bg-paper-sand",
     rotation: "rotate-1",
@@ -47,7 +47,7 @@ const projects = [
   {
     name: "jrboatliftelectric.com",
     url: "https://jrboatliftelectric.com",
-    description: "Marine & dock electrical contractor in Sarasota, FL — full web presence with SEO, lead capture, and WhatsApp integration.",
+    description: "Marine and dock electrical contractor in Sarasota, FL. Full web presence with SEO, lead capture, and WhatsApp integration.",
     tags: ["Website", "Local SEO", "Lead Gen"],
     color: "bg-paper-blue",
     rotation: "-rotate-1",
