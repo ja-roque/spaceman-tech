@@ -61,6 +61,7 @@ export default function AdminPage() {
   const [reengaging, setReengaging] = useState(false);
   const [notes, setNotes] = useState("");
   const [savingNotes, setSavingNotes] = useState(false);
+  const [showPanel, setShowPanel] = useState(false);
 
   const loadConversations = useCallback(async () => {
     const res = await fetch("/api/admin/conversations");
@@ -297,8 +298,6 @@ export default function AdminPage() {
   }
 
   // ── CHAT VIEW ───────────────────────────────────────────────────────────────
-  const [showPanel, setShowPanel] = useState(false);
-
   return (
     <div className="min-h-screen bg-dark flex flex-col" style={{ fontFamily: "var(--font-geist-sans)" }}>
       {/* Top bar */}
