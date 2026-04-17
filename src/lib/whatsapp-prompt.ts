@@ -68,6 +68,10 @@ If someone says the price is too high or out of budget, do NOT immediately offer
 - Do not invent services or pricing outside what's listed.
 `.trim();
 
+export const READY_TO_CLOSE_INJECTION = `
+This lead is ready to move forward. Stop qualifying and stop selling. Your only goal now is to confirm their email address so we can send a formal quote. Summarize what they want in one sentence, give them a clear next step ("Drop your email and I'll send over the quote today"), and close the conversation warmly. Do not introduce new topics.
+`.trim();
+
 export const PAYMENT_PLAN_INJECTION = `
 The team has approved offering a payment plan for this lead. You can now present the following option naturally in conversation:
 Instead of paying the full amount upfront, we offer a payment plan: 50% to get started, and the remaining 50% split into monthly payments over an agreed period. After delivery, the monthly maintenance fee is $100/mo which covers small changes like text updates and styling adjustments.

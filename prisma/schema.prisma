@@ -23,6 +23,7 @@ model Conversation {
   offerPaymentPlan  Boolean   @default(false)
   context           String?
   notes             String?
+  stage             String    @default("qualifying")
   messageCount      Int       @default(0)
   createdAt         DateTime  @default(now())
   updatedAt         DateTime  @updatedAt

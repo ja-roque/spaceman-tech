@@ -3,7 +3,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import OpenAI from "openai";
 import twilio from "twilio";
 import { prisma } from "@/lib/prisma";
-import { SYSTEM_PROMPT, PAYMENT_PLAN_INJECTION, RATE_LIMITS } from "@/lib/whatsapp-prompt";
+import { SYSTEM_PROMPT, PAYMENT_PLAN_INJECTION, READY_TO_CLOSE_INJECTION, RATE_LIMITS } from "@/lib/whatsapp-prompt";
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
@@ -176,6 +176,35 @@ export async function POST(req: NextRequest) {
   }));
   history.push({ role: "user", content: body });
 
+  // Detect lead stage from full conversation
+  const STAGE_ORDER = ["qualifying", "interested", "ready", "lost"];
+  async function detectStage(messages: { role: string; content: string }[]): Promise<string> {
+    try {
+      const transcript = messages.map((m) => `${m.role === "user" ? "Lead" : "Agent"}: ${m.content}`).join("\n");
+      const res = await anthropic.messages.create({
+        model: "claude-haiku-4-5-20251001",
+        max_tokens: 10,
+        messages: [{
+          role: "user",
+          content: `Based on this conversation, what is the current stage of this lead? Choose exactly one:
+- qualifying: still exploring, vague, or unclear intent
+- interested: asking specific questions, engaged, comparing options
+- ready: explicitly asked for a quote, said yes or let's do it, wants to move forward, shared contact info
+- lost: said no, too expensive and dropped off, clearly not interested
+
+Conversation:
+${transcript}
+
+Answer with one word only:`
+        }]
+      });
+      const stage = (res.content[0] as { type: string; text: string }).text.trim().toLowerCase();
+      return STAGE_ORDER.includes(stage) ? stage : "qualifying";
+    } catch {
+      return "qualifying";
+    }
+  }
+
   // Detect price pushback via AI
   async function detectPushback(message: string): Promise<boolean> {
     try {
@@ -191,8 +220,11 @@ export async function POST(req: NextRequest) {
   }
   const isPushback = !convo.flagPaymentPlan && !convo.offerPaymentPlan && await detectPushback(body);
 
-  // Build system prompt — inject payment plan if approved, or context if set
+  // Build system prompt — inject closing/payment plan/context as appropriate
   let systemPrompt = SYSTEM_PROMPT;
+  if (convo.stage === "ready") {
+    systemPrompt += "\n\n" + READY_TO_CLOSE_INJECTION;
+  }
   if (convo.offerPaymentPlan) {
     systemPrompt += "\n\n" + PAYMENT_PLAN_INJECTION;
   } else if (convo.context) {
@@ -216,8 +248,21 @@ export async function POST(req: NextRequest) {
   // Save assistant reply
   await prisma.message.create({ data: { conversationId: convo.id, role: "assistant", content: aiReply } });
 
-  // Extract and store lead data in background
+  // Detect stage and advance if needed (never go backward)
   const allMessages = [...history, { role: "assistant", content: aiReply }];
+  detectStage(allMessages).then(async (newStage) => {
+    const currentIdx = STAGE_ORDER.indexOf(convo.stage ?? "qualifying");
+    const newIdx = STAGE_ORDER.indexOf(newStage);
+    if (newIdx > currentIdx) {
+      await prisma.conversation.update({ where: { id: convo.id }, data: { stage: newStage } });
+      if (newStage === "ready") {
+        const leadName = convo.name || from;
+        await sendWhatsApp("+50433576985", `🎯 ${leadName} is ready to close. Open /admin to review.`);
+      }
+    }
+  }).catch(() => {});
+
+  // Extract and store lead data in background
   extractLeadData(allMessages).then(async (data) => {
     if (!data) return;
     const update: Record<string, string> = {};

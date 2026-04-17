@@ -24,11 +24,19 @@ interface Conversation {
   flagPaymentPlan: boolean;
   offerPaymentPlan: boolean;
   notes: string | null;
+  stage: string;
   messageCount: number;
   createdAt: string;
   updatedAt: string;
   messages: Message[];
 }
+
+const STAGE_STYLES: Record<string, string> = {
+  qualifying: "bg-paper-sand text-text-dark",
+  interested: "bg-paper-blue text-text-dark",
+  ready: "bg-green-500 text-white",
+  lost: "bg-dark/30 text-paper-white",
+};
 
 function timeAgo(date: string) {
   const diff = Date.now() - new Date(date).getTime();
@@ -235,6 +243,7 @@ export default function AdminPage() {
                   <div className="flex flex-col items-end gap-1">
                     <span className="text-xs text-text-dark/30" title={new Date(c.updatedAt).toLocaleString()}>active {timeAgo(c.updatedAt)}</span>
                     <div className="flex gap-1 flex-wrap justify-end">
+                      <span className={`text-xs rounded-full px-2 py-0.5 font-bold capitalize ${STAGE_STYLES[c.stage] ?? STAGE_STYLES.qualifying}`}>{c.stage}</span>
                       {c.flagPaymentPlan && !c.offerPaymentPlan && <span className="text-xs bg-yellow-400 text-dark rounded-full px-2 py-0.5 font-bold">$ Plan?</span>}
                       {c.offerPaymentPlan && <span className="text-xs bg-green-500 text-white rounded-full px-2 py-0.5">Plan ON</span>}
                       {c.humanTakeover && <span className="text-xs bg-accent text-white rounded-full px-2 py-0.5">You</span>}
@@ -406,6 +415,29 @@ export default function AdminPage() {
                 <p className="text-text-dark/80 leading-relaxed text-xs">{selected.requirements}</p>
               </div>
             )}
+
+            <div className="pt-2 border-t border-dark/10">
+              <p className="text-xs font-bold text-text-dark/40 uppercase tracking-wider mb-1.5">Stage</p>
+              <div className="grid grid-cols-2 gap-1">
+                {["qualifying", "interested", "ready", "lost"].map((s) => (
+                  <button
+                    key={s}
+                    onClick={async () => {
+                      await fetch("/api/admin/conversations", {
+                        method: "PATCH",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ phone: selected?.phone, stage: s }),
+                      });
+                      await loadConversation(selected!.phone);
+                      await loadConversations();
+                    }}
+                    className={`rounded-lg px-2 py-1.5 text-xs font-bold capitalize transition-colors ${selected?.stage === s ? (STAGE_STYLES[s] ?? "") : "bg-paper-cream text-text-dark/40 hover:bg-paper-sand"}`}
+                  >
+                    {s}
+                  </button>
+                ))}
+              </div>
+            </div>
 
             <div className="pt-2 border-t border-dark/10">
               <div className={`rounded-lg px-3 py-1.5 text-xs font-bold text-center ${selected?.humanTakeover ? "bg-accent text-white" : "bg-paper-sand text-text-dark"}`}>
