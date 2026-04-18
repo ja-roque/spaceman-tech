@@ -18,6 +18,9 @@ export default function Contact() {
       if (!res.ok) throw new Error();
       setStatus("sent");
       setForm({ name: "", email: "", message: "" });
+      if (typeof window.gtag === "function") {
+        window.gtag("event", "conversion", { send_to: "AW-18100065428/bbIgCLGtxp4cEJSp5LZD" });
+      }
     } catch {
       setStatus("error");
     }
