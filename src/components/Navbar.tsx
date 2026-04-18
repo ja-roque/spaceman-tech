@@ -1,36 +1,41 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
-const navLinks = [
-  { href: "#services", label: "Services" },
-  { href: "#portfolio", label: "Portfolio" },
-  { href: "#nearshore", label: "Nearshore" },
-  { href: "#about", label: "About" },
+const NAV_ANCHORS = [
+  { anchor: "services", label: "Services" },
+  { anchor: "portfolio", label: "Portfolio" },
+  { anchor: "nearshore", label: "Nearshore" },
+  { anchor: "about", label: "About" },
 ];
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
+  const href = (anchor: string) => isHome ? `#${anchor}` : `/#${anchor}`;
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-dark/90 backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a href="#" className="text-xl font-bold tracking-tight text-paper-white">
+        <a href="/" className="text-xl font-bold tracking-tight text-paper-white">
           Spaceman Tech
         </a>
 
         <div className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
+          {NAV_ANCHORS.map((link) => (
             <a
-              key={link.href}
-              href={link.href}
+              key={link.anchor}
+              href={href(link.anchor)}
               className="text-sm text-paper-white/60 transition-colors hover:text-paper-white"
             >
               {link.label}
             </a>
           ))}
           <a
-            href="#contact"
+            href={href("contact")}
             className="rounded-lg bg-accent px-5 py-2 text-sm font-bold text-white transition-colors hover:bg-accent-hover"
           >
             Let&apos;s Talk
@@ -55,10 +60,10 @@ export default function Navbar() {
       {menuOpen && (
         <div className="bg-dark/95 backdrop-blur-sm md:hidden">
           <div className="flex flex-col gap-4 px-6 py-4">
-            {navLinks.map((link) => (
+            {NAV_ANCHORS.map((link) => (
               <a
-                key={link.href}
-                href={link.href}
+                key={link.anchor}
+                href={href(link.anchor)}
                 className="text-sm text-paper-white/60 hover:text-paper-white"
                 onClick={() => setMenuOpen(false)}
               >
@@ -66,7 +71,7 @@ export default function Navbar() {
               </a>
             ))}
             <a
-              href="#contact"
+              href={href("contact")}
               className="rounded-lg bg-accent px-5 py-2 text-center text-sm font-bold text-white hover:bg-accent-hover"
               onClick={() => setMenuOpen(false)}
             >
