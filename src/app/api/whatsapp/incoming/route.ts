@@ -278,6 +278,9 @@ Answer with one word only:`
   } else if (convo.context) {
     systemPrompt += "\n\n" + convo.context;
   }
+  if (convo.notes) {
+    systemPrompt += `\n\n## Internal notes from the team\n${convo.notes}`;
+  }
 
   // Call Claude
   let aiReply = "";
