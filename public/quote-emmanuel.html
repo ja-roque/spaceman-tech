@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CI Quote – Spaceman Tech</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #f2f2f2;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      color: #1a1a1a;
+      padding: 24px 16px;
+    }
+    .email {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    }
+    .header {
+      background: #0d0d0d;
+      padding: 32px 40px;
+    }
+    .header .logo {
+      font-size: 18px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+    }
+    .header .logo span { color: #ff5f35; }
+    .body { padding: 40px; }
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #ff5f35;
+      margin-bottom: 10px;
+      margin-top: 32px;
+    }
+    p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #3a3a3a;
+      margin-bottom: 12px;
+    }
+    ul {
+      padding-left: 0;
+      list-style: none;
+      margin-bottom: 12px;
+    }
+    ul li {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #3a3a3a;
+      padding: 6px 0 6px 22px;
+      position: relative;
+      border-bottom: 1px solid #f5f5f5;
+    }
+    ul li:last-child { border-bottom: none; }
+    ul li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 15px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #ff5f35;
+    }
+    .phase-box {
+      background: #fafafa;
+      border: 1px solid #efefef;
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin: 16px 0 24px;
+    }
+    .phase-box .phase-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0d0d0d;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .honesty-box {
+      background: #fff8f6;
+      border: 1px solid #ffd5c8;
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin: 24px 0;
+    }
+    .honesty-box .q-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #ff5f35;
+      margin-bottom: 10px;
+    }
+    .honesty-box p {
+      font-size: 15px;
+      color: #3a3a3a;
+      margin-bottom: 8px;
+    }
+    .honesty-box p:last-child { margin-bottom: 0; }
+    .not-included {
+      background: #f7f7f7;
+      border-left: 3px solid #e0e0e0;
+      border-radius: 0 6px 6px 0;
+      padding: 16px 20px;
+      margin: 16px 0 24px;
+    }
+    .not-included p {
+      font-size: 14px;
+      color: #888;
+      margin: 0;
+    }
+    .not-included strong { color: #555; }
+    .price-box {
+      background: #0d0d0d;
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin: 8px 0 28px;
+    }
+    .price-box .price {
+      font-size: 40px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: -1.5px;
+    }
+    .price-box .price span { color: #ff5f35; }
+    .price-box .price-sub {
+      font-size: 13px;
+      color: #888;
+      margin-top: 6px;
+    }
+    .price-box .price-detail {
+      font-size: 14px;
+      color: #aaa;
+      margin-top: 12px;
+      border-top: 1px solid #222;
+      padding-top: 12px;
+      line-height: 1.8;
+    }
+    .question-box {
+      background: #f7f9ff;
+      border: 1px solid #dce6ff;
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin: 28px 0;
+    }
+    .question-box .q-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #3b5bdb;
+      margin-bottom: 10px;
+    }
+    .question-box p { margin-bottom: 8px; }
+    .question-box ol {
+      padding-left: 18px;
+      margin: 10px 0 0;
+    }
+    .question-box ol li {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #3a3a3a;
+      margin-bottom: 4px;
+    }
+    .footer {
+      padding: 24px 40px;
+      border-top: 1px solid #f0f0f0;
+    }
+    .footer p {
+      font-size: 13px;
+      color: #aaa;
+      margin: 0;
+    }
+    .footer strong { color: #555; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="email">
+    <div class="header">
+      <div class="logo">Spaceman<span>Tech</span></div>
+    </div>
+    <div class="body">
+
+      <p>Hi Emmanuel,</p>
+      <p>We took a closer look at the full scope of what you want to build and we want to be upfront with you before moving forward.</p>
+
+      <div class="honesty-box">
+        <div class="q-label">A note on scope and price</div>
+        <p>What you are describing is not a simple app. CI is essentially a creator economy platform in the same category as Twitch or YouTube. A platform where creators sign up, post content, build audiences, earn money from views, receive real payouts, and message each other — with you managing all of it from an admin panel.</p>
+        <p>We sent you an earlier estimate of $10,000 to $12,000. After reviewing the full requirements, that number was too low to deliver something production-ready, reliable, and built to last. At that price you would get something fragile that breaks as soon as real users show up. That is not what we build, and not what you deserve for a project of this ambition.</p>
+        <p>The honest number for a finished, production-ready Phase 1 is <strong>$40,000</strong>.</p>
+      </div>
+
+      <div class="section-label">Our strong recommendation — start with a web app</div>
+      <p>We know you mentioned a mobile app, and we will build that. But we strongly recommend starting with a web app for Phase 1. Here is why.</p>
+      <p>Statistically, users are far more likely to engage with a platform the first time if they can open it directly in a browser. Asking someone to find your app in the App Store, download it, and create an account is a four-step barrier before they even see your product. A web app removes that completely.</p>
+      <p>On top of that, publishing on Apple and Google Play adds weeks of review time, strict content and payment policies that can delay your launch, and ongoing compliance requirements. With a web app, you launch when it is ready. Once CI has real users and real creators earning, we convert it to a mobile app in Phase 2 with a proven product and an audience already waiting.</p>
+
+      <div class="section-label">What is included in Phase 1</div>
+      <div class="phase-box">
+        <div class="phase-title">CI – Creator Income, Full Web Platform</div>
+        <ul>
+          <li>Creator accounts – sign up, profiles, video and post uploads</li>
+          <li>Viewer side – browse content, follow creators, likes and comments</li>
+          <li>Video processing and delivery – proper video infrastructure so content loads fast for anyone, anywhere</li>
+          <li>Earnings system – accurate per-view and per-engagement tracking for every creator</li>
+          <li>Payout system – creators request payouts and receive their earnings, built on Stripe Connect with identity verification</li>
+          <li>In-app messaging – direct messages between creators and users, in real time</li>
+          <li>Admin dashboard – you manage creators, content, payouts, and platform settings without touching any code</li>
+        </ul>
+      </div>
+
+      <div class="not-included">
+        <p><strong>Saved for Phase 2:</strong> Mobile app (iOS and Android), live streaming, gaming streams, and ad revenue infrastructure. These will be scoped once Phase 1 is live and you have real users.</p>
+      </div>
+
+      <div class="section-label">Investment</div>
+      <div class="price-box">
+        <div class="price">$40,000</div>
+        <div class="price-sub">CI – Creator Income, Phase 1 complete web platform</div>
+        <div class="price-detail">
+          $20,000 to start &nbsp;&middot;&nbsp; $20,000 on delivery<br />
+          Timeline: 4 to 5 months
+        </div>
+      </div>
+
+      <div class="question-box">
+        <div class="q-label">One question we need answered before finalizing</div>
+        <p>To build the earnings and payout system correctly, we need to understand where the money that pays creators actually comes from. For example:</p>
+        <ol>
+          <li>Do viewers pay to subscribe to creators or tip them directly?</li>
+          <li>Does the platform sell ad space and share that revenue with creators?</li>
+          <li>Or is it a combination of both?</li>
+        </ol>
+        <p style="margin-top: 12px;">This is the most critical piece of the architecture. Once you clarify this, we will finalize the quote and send you a contract and payment link to get started.</p>
+      </div>
+
+      <p>We believe CI is a strong concept and we would love to build it with you the right way. Looking forward to your reply, Emmanuel.</p>
+
+    </div>
+    <div class="footer">
+      <p><strong>Javier Roque</strong> &nbsp;&middot;&nbsp; Spaceman Tech LLC<br />hello@spacemantech.ai &nbsp;&middot;&nbsp; Delaware, USA</p>
+    </div>
+  </div>
+</body>
+</html>

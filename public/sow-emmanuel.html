@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Service Agreement – CI Creator Income</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #f2f2f2;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      color: #1a1a1a;
+      padding: 24px 16px;
+    }
+
+    .doc {
+      max-width: 780px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.08);
+    }
+
+    .header {
+      background: #0d0d0d;
+      padding: 40px 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .logo { font-size: 20px; font-weight: 900; color: #fff; letter-spacing: -0.5px; }
+    .logo span { color: #ff5f35; }
+    .doc-meta { text-align: right; }
+    .doc-meta .doc-type {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.5px; color: #ff5f35; margin-bottom: 4px;
+    }
+    .doc-meta .doc-title { font-size: 15px; font-weight: 700; color: #fff; }
+    .doc-meta .doc-date { font-size: 12px; color: #888; margin-top: 4px; }
+
+    .body { padding: 56px; }
+
+    .parties {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    .party {
+      background: #fafafa;
+      border: 1px solid #efefef;
+      border-radius: 8px;
+      padding: 20px 24px;
+    }
+    .party-label {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.2px; color: #ff5f35; margin-bottom: 8px;
+    }
+    .party-name { font-size: 15px; font-weight: 700; color: #0d0d0d; margin-bottom: 4px; }
+    .party-detail { font-size: 13px; color: #888; line-height: 1.6; }
+
+    h2 {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.2px; color: #ff5f35;
+      margin-bottom: 12px; margin-top: 40px;
+      padding-bottom: 8px; border-bottom: 1px solid #f0f0f0;
+    }
+    h2:first-of-type { margin-top: 0; }
+
+    p { font-size: 14px; line-height: 1.8; color: #3a3a3a; margin-bottom: 12px; }
+
+    ul { list-style: none; padding: 0; margin-bottom: 12px; }
+    ul li {
+      font-size: 14px; line-height: 1.8; color: #3a3a3a;
+      padding: 5px 0 5px 20px; position: relative;
+      border-bottom: 1px solid #f8f8f8;
+    }
+    ul li:last-child { border-bottom: none; }
+    ul li::before {
+      content: ""; position: absolute; left: 0; top: 14px;
+      width: 6px; height: 6px; border-radius: 50%; background: #ff5f35;
+    }
+
+    .not-included {
+      background: #f7f7f7; border-left: 3px solid #e0e0e0;
+      border-radius: 0 6px 6px 0; padding: 16px 20px; margin: 16px 0;
+    }
+    .not-included p { font-size: 13px; color: #888; margin: 0; }
+    .not-included strong { color: #555; }
+
+    table.milestones { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    .milestones th {
+      background: #0d0d0d; color: #fff; font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.8px; padding: 12px 16px; text-align: left;
+    }
+    .milestones td {
+      font-size: 13px; color: #3a3a3a; padding: 12px 16px;
+      border-bottom: 1px solid #f0f0f0; vertical-align: top;
+    }
+    .milestones tr:last-child td { border-bottom: none; }
+    .milestones tr:nth-child(even) td { background: #fafafa; }
+
+    .payment-box {
+      background: #0d0d0d; border-radius: 8px; padding: 28px 32px; margin: 16px 0;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    }
+    .payment-item .amount { font-size: 28px; font-weight: 900; color: #fff; letter-spacing: -1px; }
+    .payment-item .amount span { color: #ff5f35; }
+    .payment-item .label { font-size: 12px; color: #888; margin-top: 4px; }
+    .payment-item .detail { font-size: 12px; color: #555; margin-top: 8px; line-height: 1.6; }
+
+    .clause {
+      background: #fafafa; border: 1px solid #efefef;
+      border-radius: 8px; padding: 20px 24px; margin: 16px 0;
+    }
+    .clause p { font-size: 13px; color: #555; margin-bottom: 8px; }
+    .clause p:last-child { margin-bottom: 0; }
+
+    .signatures {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 24px;
+    }
+    .sig-block .sig-line {
+      border-bottom: 1.5px solid #0d0d0d; height: 56px; margin-bottom: 8px;
+    }
+    .sig-block .sig-label { font-size: 12px; color: #888; }
+    .sig-block .sig-name { font-size: 13px; font-weight: 700; color: #0d0d0d; margin-top: 4px; }
+    .sig-block .sig-title { font-size: 12px; color: #888; }
+    .sig-block .sig-date { font-size: 12px; color: #bbb; margin-top: 8px; }
+
+    .footer {
+      padding: 24px 56px; border-top: 1px solid #f0f0f0;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer p { font-size: 11px; color: #bbb; margin: 0; }
+    .confidential { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #ddd; }
+
+    /* A4 print styles */
+    @media print {
+      body { background: #fff; padding: 0; }
+      .doc { box-shadow: none; border-radius: 0; max-width: 100%; }
+      h2 { page-break-after: avoid; }
+      .signatures { page-break-inside: avoid; }
+      .payment-box { page-break-inside: avoid; }
+      @page { size: A4; margin: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="doc">
+
+    <div class="header">
+      <div class="logo">Spaceman<span>Tech</span></div>
+      <div class="doc-meta">
+        <div class="doc-type">Service Agreement</div>
+        <div class="doc-title">CI – Creator Income Platform</div>
+        <div class="doc-date">April 20, 2026</div>
+      </div>
+    </div>
+
+    <div class="body">
+
+      <div class="parties">
+        <div class="party">
+          <div class="party-label">Service Provider</div>
+          <div class="party-name">Spaceman Tech LLC</div>
+          <div class="party-detail">Delaware, USA<br />hello@spacemantech.ai<br />spacemantech.ai</div>
+        </div>
+        <div class="party">
+          <div class="party-label">Client</div>
+          <div class="party-name">Akinnawonu Emmanuel Olawale</div>
+          <div class="party-detail">eolawale504@gmail.com</div>
+        </div>
+      </div>
+
+      <h2>1. Project Overview</h2>
+      <p>Spaceman Tech LLC ("Service Provider") agrees to design, develop, and deliver CI – Creator Income, a web-based platform where creators, artists, and writers can post content, build audiences, and earn money based on views and viewer subscriptions. The client ("Client") will operate the platform as the sole administrator. This document serves as the binding agreement between both parties.</p>
+
+      <h2>2. Scope of Work</h2>
+      <p>The following features are included in this engagement:</p>
+      <ul>
+        <li>Creator accounts – registration, profile setup, and content publishing (videos and posts)</li>
+        <li>Viewer experience – browse content, follow creators, likes, and comments</li>
+        <li>Video infrastructure – upload, processing, and delivery via a professional video CDN to ensure fast playback globally</li>
+        <li>Subscription system – viewers can subscribe to creators, with revenue distributed to creators and the platform per agreed terms</li>
+        <li>Earnings system – per-view and subscription-based earnings tracking for every creator, visible on their individual dashboard</li>
+        <li>Payout system – creators can request and receive earnings via Stripe Connect, including identity verification as required by payment regulations</li>
+        <li>In-app messaging – real-time direct messages between creators and users</li>
+        <li>Admin dashboard – full platform control including creator management, content moderation, payout approvals, subscription management, and platform analytics</li>
+        <li>Production deployment on a cloud server with domain and SSL configuration</li>
+      </ul>
+
+      <div class="not-included">
+        <p><strong>Explicitly excluded from this agreement (Phase 2):</strong> Live streaming, gaming streams, ad revenue infrastructure, and native mobile applications for iOS and Android. These will be scoped separately after Phase 1 delivery.</p>
+      </div>
+
+      <h2>3. Timeline and Milestones</h2>
+      <table class="milestones">
+        <tr>
+          <th>Milestone</th>
+          <th>Deliverable</th>
+          <th>Timeline</th>
+        </tr>
+        <tr>
+          <td><strong>Kickoff</strong></td>
+          <td>Project setup, architecture design, UI mockups for client review</td>
+          <td>Week 1 to 2</td>
+        </tr>
+        <tr>
+          <td><strong>Core Platform</strong></td>
+          <td>Creator accounts, content publishing, viewer experience</td>
+          <td>Week 3 to 6</td>
+        </tr>
+        <tr>
+          <td><strong>Subscriptions and Earnings</strong></td>
+          <td>Subscription system, earnings tracking, Stripe Connect integration</td>
+          <td>Week 7 to 10</td>
+        </tr>
+        <tr>
+          <td><strong>Messaging and Admin</strong></td>
+          <td>Real-time messaging, full admin dashboard</td>
+          <td>Week 11 to 14</td>
+        </tr>
+        <tr>
+          <td><strong>QA and Launch</strong></td>
+          <td>Testing, bug fixes, production deployment, client handoff</td>
+          <td>Week 15 to 16</td>
+        </tr>
+      </table>
+      <p>Total estimated timeline: 14 to 16 weeks from the date the initial payment is received and the project is formally kicked off.</p>
+
+      <h2>4. Payment Schedule</h2>
+      <div class="payment-box">
+        <div class="payment-item">
+          <div class="amount">$20,000</div>
+          <div class="label">Due at contract signing</div>
+          <div class="detail">Work begins upon receipt of this payment. A Stripe payment link will be provided upon signing.</div>
+        </div>
+        <div class="payment-item">
+          <div class="amount">$20,000</div>
+          <div class="label">Due at delivery</div>
+          <div class="detail">Final payment due upon delivery of the completed platform, prior to production handoff and domain transfer.</div>
+        </div>
+      </div>
+      <p>Total investment: <strong>$40,000 USD.</strong> All payments are processed in USD via Stripe. The initial payment of $20,000 is non-refundable once work has commenced. The final payment of $20,000 is due within 5 business days of delivery notification. Source code and production access will be transferred only upon receipt of final payment.</p>
+
+      <h2>5. Late Payment</h2>
+      <div class="clause">
+        <p>If the final payment of $20,000 is not received within 10 business days of delivery notification, the Service Provider reserves the right to suspend access to the delivered platform until payment is received. Work will not be considered complete and ownership will not transfer until all payments have cleared.</p>
+      </div>
+
+      <h2>6. Client Responsibilities</h2>
+      <ul>
+        <li>Provide timely feedback on design mockups within 5 business days of delivery</li>
+        <li>Provide all branding assets required for the platform (logo, color scheme, platform name) within the first 7 days of the project</li>
+        <li>Approve milestone deliverables in a timely manner to avoid project delays</li>
+        <li>Ensure availability for weekly check-in calls or messages during the project</li>
+      </ul>
+      <p>Delays caused by the Client's failure to provide feedback, assets, or approvals in a timely manner may result in timeline extensions and are not the responsibility of the Service Provider.</p>
+
+      <h2>7. Change Requests</h2>
+      <div class="clause">
+        <p>Any features or requirements not listed in Section 2 of this agreement are considered out of scope. Change requests must be submitted in writing to hello@spacemantech.ai and approved by both parties before work begins. Change requests may result in additional cost and timeline adjustments, which will be documented in a written amendment to this agreement.</p>
+      </div>
+
+      <h2>8. Intellectual Property</h2>
+      <p>Upon receipt of final payment, the Client owns all source code, design assets, database schemas, and intellectual property produced under this engagement. Spaceman Tech LLC retains no rights to the delivered work after final payment is received. Prior to final payment, all work product remains the property of Spaceman Tech LLC.</p>
+
+      <h2>9. Confidentiality</h2>
+      <div class="clause">
+        <p>Both parties agree to keep confidential all non-public information shared during this engagement, including but not limited to business plans, technical architecture, pricing, and communications. Neither party shall disclose confidential information to third parties without prior written consent. This obligation survives termination of this agreement.</p>
+      </div>
+
+      <h2>10. Warranty</h2>
+      <div class="clause">
+        <p>The Service Provider warrants that the delivered platform will function materially as described in Section 2 for a period of 30 days following delivery. During this period, the Service Provider will correct any bugs or defects at no additional cost. This warranty does not cover issues arising from third-party services, client modifications to the code, or hosting infrastructure failures outside the Service Provider's control.</p>
+      </div>
+
+      <h2>11. Limitation of Liability</h2>
+      <div class="clause">
+        <p>The Service Provider's total liability under this agreement shall not exceed the total amount paid by the Client. The Service Provider is not liable for any indirect, incidental, or consequential damages, including lost revenue, lost data, or business interruption, arising from the use or inability to use the delivered platform.</p>
+      </div>
+
+      <h2>12. Dispute Resolution</h2>
+      <div class="clause">
+        <p>Both parties agree to attempt to resolve any dispute informally through good-faith communication before pursuing legal action. If a dispute cannot be resolved informally within 30 days, it shall be submitted to binding arbitration under the rules of the American Arbitration Association. This agreement is governed by the laws of the State of Delaware, USA.</p>
+      </div>
+
+      <h2>13. Termination</h2>
+      <div class="clause">
+        <p>Either party may terminate this agreement with 14 days written notice to the other party. In the event of termination by the Client, the Client will be invoiced for all work completed up to the termination date, prorated against the total project value. The initial payment of $20,000 is non-refundable under any circumstances. In the event of termination by the Service Provider, any payment received beyond the value of work completed will be refunded to the Client.</p>
+      </div>
+
+      <h2>14. Post-Launch Maintenance</h2>
+      <div class="clause">
+        <p>Following delivery and acceptance of the platform, ongoing maintenance is available as a monthly recurring service. This covers server infrastructure, hosting costs, security updates, monitoring, and minor bug fixes required to keep the platform operational.</p>
+        <p>Maintenance billing begins only after the project has been formally delivered and the final payment has been received. The monthly fee starts at <strong>$300 USD</strong> and scales based on actual traffic and infrastructure usage, up to approximately <strong>$500 USD/month</strong> at moderate scale. The exact monthly rate will be confirmed in a separate maintenance agreement signed at the time of delivery.</p>
+        <p>Maintenance is optional but strongly recommended. If the Client chooses not to engage ongoing maintenance, the Service Provider is not responsible for platform availability, third-party service failures, or infrastructure issues after the 30-day warranty period defined in Section 10.</p>
+      </div>
+
+      <h2>15. Entire Agreement</h2>
+      <p>This document constitutes the entire agreement between both parties with respect to the subject matter herein and supersedes all prior discussions, representations, or agreements. Any amendments to this agreement must be made in writing and signed by both parties.</p>
+
+      <h2>16. Signatures</h2>
+      <p>By signing below, both parties acknowledge that they have read, understood, and agree to all terms set forth in this Service Agreement.</p>
+
+      <div class="signatures">
+        <div class="sig-block">
+          <div class="sig-line"></div>
+          <div class="sig-label">Signature</div>
+          <div class="sig-name">Javier Roque</div>
+          <div class="sig-title">Spaceman Tech LLC, Service Provider</div>
+          <div class="sig-date">Date: ___________________</div>
+        </div>
+        <div class="sig-block">
+          <div class="sig-line"></div>
+          <div class="sig-label">Signature</div>
+          <div class="sig-name">Akinnawonu Emmanuel Olawale</div>
+          <div class="sig-title">Client</div>
+          <div class="sig-date">Date: ___________________</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <p>Spaceman Tech LLC &nbsp;&middot;&nbsp; hello@spacemantech.ai &nbsp;&middot;&nbsp; spacemantech.ai</p>
+      <div class="confidential">Confidential</div>
+    </div>
+
+  </div>
+</body>
+</html>
