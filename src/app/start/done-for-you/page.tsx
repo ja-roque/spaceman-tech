@@ -1,4 +1,5 @@
 import WaveDivider from "@/components/WaveDivider";
+import WhatsAppMockup from "@/components/WhatsAppMockup";
 
 const WA_LINK =
   "https://wa.me/13024482304?text=Hi%2C%20I%27ve%20been%20trying%20to%20build%20an%20app%20with%20a%20no-code%20tool%20and%20I%20need%20a%20real%20developer.";
@@ -43,6 +44,20 @@ const PLANS = [
     desc: "You get the full source code, deployed and production-ready. Hosting billed separately at cost.",
     detail: "Most MVPs delivered in 1 to 2 weeks.",
   },
+];
+
+const MONTHLY_INCLUDES = [
+  "Server hosting and infrastructure costs",
+  "Uptime monitoring — if it goes down, we fix it",
+  "Security and dependency updates",
+  "Up to 2 hours of small changes per month (copy, styling, minor UI tweaks)",
+  "WhatsApp or email support",
+];
+
+const MONTHLY_EXCLUDES = [
+  "New features or sections. Those are quoted separately.",
+  "Design overhauls",
+  "Third-party service fees (Stripe, Twilio, etc.)",
 ];
 
 const STEPS = [
@@ -197,7 +212,86 @@ export default function DoneForYouLanding() {
         </div>
       </section>
 
-      <WaveDivider fillColor="#0d0d0d" bgColor="#f2e6d0" variant={1} />
+      <WaveDivider fillColor="#f5f0eb" bgColor="#f2e6d0" variant={2} />
+
+      {/* Monthly plan breakdown */}
+      <section className="px-6 py-16 bg-paper-white">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="mb-2 text-2xl font-black tracking-tight text-text-dark text-center sm:text-3xl">
+            What the monthly plan includes
+          </h2>
+          <p className="text-center text-text-dark/50 mb-10 text-sm">No surprises. Here is exactly what you get.</p>
+          <div className="grid gap-6 sm:grid-cols-2">
+            <div className="rounded-2xl border border-text-dark/8 bg-paper-cream p-6 paper-shadow">
+              <div className="mb-4 text-xs font-bold uppercase tracking-wider text-accent">Included</div>
+              <ul className="space-y-3">
+                {MONTHLY_INCLUDES.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-text-dark/70">
+                    <CheckIcon />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-2xl border border-text-dark/8 bg-paper-cream p-6 paper-shadow">
+              <div className="mb-4 text-xs font-bold uppercase tracking-wider text-text-dark/30">Not included</div>
+              <ul className="space-y-3">
+                {MONTHLY_EXCLUDES.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-text-dark/40">
+                    <svg className="mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <circle cx="8" cy="8" r="8" fill="#0d0d0d" fillOpacity="0.06" />
+                      <path d="M5 5l6 6M11 5l-6 6" stroke="#0d0d0d" strokeOpacity="0.3" strokeWidth="1.5" strokeLinecap="round" />
+                    </svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <WaveDivider fillColor="#ede8e0" bgColor="#f5f0eb" variant={3} />
+
+      {/* How communication works */}
+      <section className="px-6 py-16 bg-paper-cream">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="mb-2 text-2xl font-black tracking-tight text-text-dark text-center sm:text-3xl">
+            You message us. We handle it.
+          </h2>
+          <p className="text-center text-text-dark/50 mb-10 text-sm">
+            Small changes via WhatsApp. No tickets, no calls, no waiting.
+          </p>
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-16">
+            <div className="flex-shrink-0">
+              <WhatsAppMockup />
+            </div>
+            <div className="max-w-sm text-center lg:text-left">
+              <ul className="space-y-4">
+                {[
+                  { heading: "Send us a message", body: "Text us on WhatsApp like you would a teammate. No forms, no tickets." },
+                  { heading: "We confirm and do it", body: "If it is in scope, it is done — usually within a few hours." },
+                  { heading: "You stay focused", body: "Your site stays healthy. You build your business." },
+                ].map((item) => (
+                  <li key={item.heading} className="flex items-start gap-3">
+                    <div className="mt-1 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center" style={{ background: "rgba(255,95,53,0.15)" }}>
+                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                        <path d="M2 5l2 2 4-4" stroke="#ff5f35" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span className="text-sm font-bold text-text-dark">{item.heading}</span>
+                      <p className="text-sm text-text-dark/55 mt-0.5">{item.body}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <WaveDivider fillColor="#0d0d0d" bgColor="#ede8e0" variant={1} />
 
       {/* How it works */}
       <section className="px-6 py-16 bg-dark">
@@ -236,7 +330,7 @@ export default function DoneForYouLanding() {
           Let us build it instead
         </a>
         <p className="mt-4 text-xs text-paper-white/20">
-          Spaceman Tech LLC &nbsp;&middot;&nbsp; Delaware, USA &nbsp;&middot;&nbsp;{" "}
+          Spaceman Tech LLC &nbsp;&middot;&nbsp; Delaware, USA &nbsp;&middot;&nbsp; Serving clients worldwide &nbsp;&middot;&nbsp;{" "}
           <a href="/" className="underline underline-offset-2 hover:text-paper-white/40 transition-colors">
             Visit our full site
           </a>

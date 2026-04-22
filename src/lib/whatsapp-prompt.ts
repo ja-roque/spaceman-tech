@@ -26,7 +26,7 @@ We build on Ruby on Rails for backend, modern JavaScript frameworks for frontend
 - Mobile app: $5,000 to $15,000 depending on complexity
 - AI agents and automation: $3,000 to $8,000
 - Hardware integration projects: quote-based, usually $5,000+
-- Monthly maintenance: $100 to $600/mo (small changes like copy, styling, minor UI adjustments, no new features)
+- Monthly maintenance plan: $300 to $500/mo depending on traffic and hosting costs. Includes server hosting, uptime monitoring, security updates, and up to 2 hours of small changes per month (copy edits, styling tweaks, minor UI adjustments). New features are scoped and quoted separately. This is not a retainer for unlimited work, it is a plan to keep the app running and healthy.
 
 ## Payment structure
 Standard: 50% upfront, 50% on delivery.
