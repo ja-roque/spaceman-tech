@@ -23,14 +23,14 @@ export default function Footer() {
             <h4 className="mb-4 font-semibold text-paper-white">Company</h4>
             <ul className="space-y-2">
               {[
-                { label: "Services", href: "#services" },
-                { label: "Portfolio", href: "#portfolio" },
-                { label: "Nearshore", href: "#nearshore" },
+                { label: "Services", href: "/#services" },
+                { label: "Portfolio", href: "/#portfolio" },
+                { label: "Nearshore", href: "/#nearshore" },
               ].map(({ label, href }) => (
                 <li key={label}>
-                  <a href={href} className="text-sm text-paper-white/40 transition-colors hover:text-paper-white/80">
+                  <Link href={href} className="text-sm text-paper-white/40 transition-colors hover:text-paper-white/80">
                     {label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
