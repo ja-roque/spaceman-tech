@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const NAV_ANCHORS = [
   { anchor: "services", label: "Services" },
@@ -34,6 +35,12 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
+          <Link
+            href="/blog"
+            className="text-sm text-paper-white/60 transition-colors hover:text-paper-white"
+          >
+            Blog
+          </Link>
           <a
             href={href("contact")}
             className="rounded-lg bg-accent px-5 py-2 text-sm font-bold text-white transition-colors hover:bg-accent-hover"
@@ -70,6 +77,13 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
+            <Link
+              href="/blog"
+              className="text-sm text-paper-white/60 hover:text-paper-white"
+              onClick={() => setMenuOpen(false)}
+            >
+              Blog
+            </Link>
             <a
               href={href("contact")}
               className="rounded-lg bg-accent px-5 py-2 text-center text-sm font-bold text-white hover:bg-accent-hover"
