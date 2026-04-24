@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="border-t border-paper-white/10 bg-dark">
@@ -43,9 +45,9 @@ export default function Footer() {
                 { label: "Terms of Service", href: "/terms" },
               ].map(({ label, href }) => (
                 <li key={label}>
-                  <a href={href} className="text-sm text-paper-white/40 transition-colors hover:text-paper-white/80">
+                  <Link href={href} className="text-sm text-paper-white/40 transition-colors hover:text-paper-white/80">
                     {label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
